@@ -1,0 +1,50 @@
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+	version="2.1">
+
+	<application>
+		<!-- Configura una localidad (i18n) es-PE para toda la aplicación. -->
+		<locale-config>
+			<default-locale>es_PE</default-locale>
+		</locale-config>
+
+		<!-- Define el nombre del archivo con las labels y mensajes.
+		     Note que 'msg' es una variable usada en las paginas para recuperar las labels/mensajes. -->
+		<resource-bundle>
+			<base-name>messages_labels</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
+
+	<!-- Configura un PhaseListener utilizado para forzar una serialización de la  sesión en App Engine. -->
+	<lifecycle>
+		<phase-listener>com.gaboverriding.iaopm.config.SessionSerializationPhaseListener</phase-listener>
+	</lifecycle>
+
+	<!-- Define una navegación global para una pagina con una lista de mercadorias. -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>listaArticulos</from-outcome>
+			<to-view-id>/listaArticulos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<!-- Define una lista para servir como Managed Bean para una pagina about. -->
+	<managed-bean>
+		<description>Acerca de</description>
+		<managed-bean-name>acercaDeMB</managed-bean-name>
+		<managed-bean-class>java.util.ArrayList</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<list-entries>
+			<value>acercaDe.title</value>
+			<value>acercaDe.built</value>
+			<value>acercaDe.site</value>
+			<value>acercaDe.build</value>
+		</list-entries>
+	</managed-bean>
+	
+	
+</faces-config>

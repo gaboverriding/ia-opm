@@ -1,0 +1,61 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    
+    <h:form styleClass="form-horizontal">
+    	<fieldset>
+    		<legend><h3><h:outputText value="#{msg['label.articulo']}" /> <small> <h:outputText value="#{subtitle}" /></small></h3></legend>
+    		<div class="control-group">
+	    		<label class="control-label"><h:outputText value="#{msg['label.articulo.nombre']}" /></label>
+	    		<div class="controls">
+	    			<h:inputText value="#{articuloMB.articulo.nombre}" label="#{msg['label.articulo.nombre']}" required="true" styleClass="input-large">
+	    				<f:validateLength minimum="5" maximum="60" />
+	    			</h:inputText>
+	    		</div>
+    		</div>
+    		
+    		<div class="control-group">
+	    		<label class="control-label"><h:outputText value="#{msg['label.articulo.descripcion']}" /></label>
+	    		<div class="controls">
+	    			<h:inputText value="#{articuloMB.articulo.descripcion}" label="#{msg['label.articulo.descripcion']}" required="true" styleClass="input-large">
+	    				<f:validateLength minimum="5" maximum="100" />
+	    			</h:inputText>
+	    		</div>
+	    	</div>
+
+	    	<div class="control-group">
+	    		<label class="control-label"><h:outputText value="#{msg['label.articulo.cantidad']}" /></label>
+	    		<div class="controls">
+	    			<h:inputText value="#{articuloMB.articulo.cantidad}" label="#{msg['label.articulo.cantidad']}" required="true" styleClass="input-small">
+	    				<f:convertNumber />
+	    				<f:validateLongRange minimum="1" />
+	    			</h:inputText>
+	    		</div>
+	    	</div>
+
+	    	<div class="control-group">
+	    		<label class="control-label"><h:outputText value="#{msg['label.articulo.precio']}" /></label>
+	    		<div class="controls">
+	    			<h:inputText value="#{articuloMB.articulo.precio}" label="#{msg['label.articulo.precio']}" required="true" styleClass="input-small">
+	    				<f:convertNumber minFractionDigits="2" />
+	    				<f:validateDoubleRange minimum="1" />
+	    			</h:inputText>
+	    		</div>
+	    	</div>
+    	</fieldset>
+    	
+    	<div class="control-group">
+    		<div class="controls">
+    			<h:commandButton value="#{msg['button.guardar']}" action="#{articuloMB.guardar}" styleClass="btn btn-success"/>
+    			<h:button value="#{msg['button.cancelar']}" outcome="listaArticulos" styleClass="btn"/>
+    			<h:commandButton value="#{msg['button.eliminar']}" action="#{articuloMB.eliminar}" rendered="#{articuloMB.articulo.id != null}" immediate="true" styleClass="btn btn-danger"/>
+    		</div>
+    	</div>
+    </h:form>
+    
+    <h:panelGroup layout="block" class="alert alert-error" rendered="#{facesContext.validationFailed or not empty facesContext.messageList }">
+    	<h:messages showDetail="true" showSummary="false" />
+    </h:panelGroup>
+    
+</ui:fragment>
