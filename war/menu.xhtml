@@ -13,12 +13,15 @@
 				<f:param name="active" value="lista" />
             </h:link>
 		</li>
+		
 		<li class="#{param.active == 'incluir' ? 'active' : ''}">
-			<h:link outcome="agregarArticulo" value="#{msg['menu.agregar'] }">
+			<h:link outcome="agregarProyecto" value="#{msg['menu.agregar'] }">
 				<f:param name="active" value="incluir" />
             </h:link>
         </li>
+        
 		<li class="divider"></li>
+		
 		<li class="#{param.active == 'sobre' ? 'active' : ''}">
 			<h:link outcome="sobre" value="#{msg['menu.sobre']}">
 				<f:param name="active" value="sobre" />

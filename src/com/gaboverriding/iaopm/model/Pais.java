@@ -5,6 +5,14 @@ public class Pais {
 	private String capital;
 	private String locale;
 	private String idioma;
+	
+	public Pais(){		
+	}
+	
+	public Pais(String nombre){
+		this.nombre = nombre;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

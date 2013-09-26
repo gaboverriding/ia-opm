@@ -25,8 +25,9 @@ public class Proyecto implements Serializable{
 	private Date dia_inicio;
 	private Date dia_fin;
 	private Date dia_d;
-	/*SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+/*	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	Date d = sdf.parse("21/12/2012");*/
+	
 	
 	public Proyecto (long id, String nombre, String descripcion, Pais pais, short avance, int replanificaciones, ProyectoEstado estado, Date d_ini, Date d_fin, Date d_d) {
 		this.id = id;
@@ -39,6 +40,9 @@ public class Proyecto implements Serializable{
 		this.dia_inicio = d_ini;
 		this.dia_fin = d_fin;
 		this.dia_d = d_d;
+	}	
+	
+	public Proyecto () {
 	}	
 	
 	public long getId() {

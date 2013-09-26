@@ -1,0 +1,271 @@
+[33mcommit 156ec50bac137022d281064b0e44b4de5eaefa46[m
+Author: Gabriel Ramirez <gabriel.ramirez.cazares@gmail.com>
+Date:   Mon Sep 23 13:13:37 2013 -0500
+
+    Version 1 base
+
+[1mdiff --git a/.classpath b/.classpath[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7aa8181[m
+[1m--- /dev/null[m
+[1m+++ b/.classpath[m
+[36m@@ -0,0 +1,18 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<classpath>[m
+[32m+[m	[32m<classpathentry kind="src" path="src"/>[m
+[32m+[m	[32m<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>[m
+[32m+[m	[32m<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>[m
+[32m+[m	[32m<classpathentry kind="lib" path="war/WEB-INF/lib/el-api-2.2.jar"/>[m
+[32m+[m	[32m<classpathentry kind="lib" path="war/WEB-INF/lib/el-impl-2.2.1-b05.jar"/>[m
+[32m+[m	[32m<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-1.0-sdk-1.8.3.jar"/>[m
+[32m+[m	[32m<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-labs.jar"/>[m
+[32m+[m	[32m<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-endpoints.jar"/>[m
+[32m+[m	[32m<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-jsr107cache-1.8.3.jar"/>[m
+[32m+[m	[32m<classpathentry kind="lib" path="war/WEB-INF/lib/jsr107cache-1.1.jar"/>[m
+[32m+[m	[32m<classpathentry kind="lib" path="war/WEB-INF/lib/objectify-4.0b1.jar"/>[m
+[32m+[m	[32m<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-1.2.16.jar"/>[m
+[32m+[m	[32m<classpathentry kind="lib" path="war/WEB-INF/lib/omnifaces-1.5.jar"/>[m
+[32m+[m	[32m<classpathentry kind="lib" path="war/WEB-INF/lib/javax.faces-2.1.12.jar"/>[m
+[32m+[m	[32m<classpathentry kind="output" path="war/WEB-INF/classes"/>[m
+[32m+[m[32m</classpath>[m
+[1mdiff --git a/.project b/.project[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0d3e50b[m
+[1m--- /dev/null[m
+[1m+++ b/.project[m
+[36m@@ -0,0 +1,39 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<projectDescription>[m
+[32m+[m	[32m<name>IAOPM</name>[m
+[32m+[m	[32m<comment></comment>[m
+[32m+[m	[32m<projects>[m
+[32m+[m	[32m</projects>[m
+[32m+[m	[32m<buildSpec>[m
+[32m+[m		[32m<buildCommand>[m
+[32m+[m			[32m<name>org.eclipse.wst.common.project.facet.core.builder</name>[m
+[32m+[m			[32m<arguments>[m
+[32m+[m			[32m</arguments>[m
+[32m+[m		[32m</buildCommand>[m
+[32m+[m		[32m<buildCommand>[m
+[32m+[m			[32m<name>org.eclipse.jdt.core.javabuilder</name>[m
+[32m+[m			[32m<arguments>[m
+[32m+[m			[32m</arguments>[m
+[32m+[m		[32m</buildCommand>[m
+[32m+[m		[32m<buildCommand>[m
+[32m+[m			[32m<name>com.google.gdt.eclipse.core.webAppProjectValidator</name>[m
+[32m+[m			[32m<arguments>[m
+[32m+[m			[32m</arguments>[m
+[32m+[m		[32m</buildCommand>[m
+[32m+[m		[32m<buildCommand>[m
+[32m+[m			[32m<name>com.google.appengine.eclipse.core.gaeProjectChangeNotifier</name>[m
+[32m+[m			[32m<arguments>[m
+[32m+[m			[32m</arguments>[m
+[32m+[m		[32m</buildCommand>[m
+[32m+[m		[32m<buildCommand>[m
+[32m+[m			[32m<name>com.google.appengine.eclipse.core.projectValidator</name>[m
+[32m+[m			[32m<arguments>[m
+[32m+[m			[32m</arguments>[m
+[32m+[m		[32m</buildCommand>[m
+[32m+[m	[32m</buildSpec>[m
+[32m+[m	[32m<natures>[m
+[32m+[m		[32m<nature>org.eclipse.jdt.core.javanature</nature>[m
+[32m+[m		[32m<nature>com.google.appengine.eclipse.core.gaeNature</nature>[m
+[32m+[m		[32m<nature>org.eclipse.wst.common.project.facet.core.nature</nature>[m
+[32m+[m	[32m</natures>[m
+[32m+[m[32m</projectDescription>[m
+[1mdiff --git a/.settings/com.google.appengine.eclipse.core.prefs b/.settings/com.google.appengine.eclipse.core.prefs[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1fc85da[m
+[1m--- /dev/null[m
+[1m+++ b/.settings/com.google.appengine.eclipse.core.prefs[m
+[36m@@ -0,0 +1,7 @@[m
+[32m+[m[32meclipse.preferences.version=1[m
+[32m+[m[32mfilesCopiedToWebInfLib=appengine-api-1.0-sdk-1.8.3.jar|appengine-api-labs.jar|appengine-endpoints.jar|appengine-jsr107cache-1.8.3.jar|jsr107cache-1.1.jar[m
+[32m+[m[32mgaeDatanucleusEnabled=false[m
+[32m+[m[32mgaeDatanucleusVersion=v2[m
+[32m+[m[32mgaeHrdEnabled=true[m
+[32m+[m[32mgoogleCloudSqlEnabled=false[m
+[32m+[m[32mlocalDevMySqlEnabled=true[m
+[1mdiff --git a/.settings/com.google.gdt.eclipse.core.prefs b/.settings/com.google.gdt.eclipse.core.prefs[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cc6cb35[m
+[1m--- /dev/null[m
+[1m+++ b/.settings/com.google.gdt.eclipse.core.prefs[m
+[36m@@ -0,0 +1,3 @@[m
+[32m+[m[32meclipse.preferences.version=1[m
+[32m+[m[32mwarSrcDir=war[m
+[32m+[m[32mwarSrcDirIsOutput=true[m
+[1mdiff --git a/.settings/org.eclipse.jdt.core.prefs b/.settings/org.eclipse.jdt.core.prefs[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f42de36[m
+[1m--- /dev/null[m
+[1m+++ b/.settings/org.eclipse.jdt.core.prefs[m
+[36m@@ -0,0 +1,7 @@[m
+[32m+[m[32meclipse.preferences.version=1[m
+[32m+[m[32morg.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled[m
+[32m+[m[32morg.eclipse.jdt.core.compiler.codegen.targetPlatform=1.7[m
+[32m+[m[32morg.eclipse.jdt.core.compiler.compliance=1.7[m
+[32m+[m[32morg.eclipse.jdt.core.compiler.problem.assertIdentifier=error[m
+[32m+[m[32morg.eclipse.jdt.core.compiler.problem.enumIdentifier=error[m
+[32m+[m[32morg.eclipse.jdt.core.compiler.source=1.7[m
+[1mdiff --git a/.settings/org.eclipse.wst.common.project.facet.core.xml b/.settings/org.eclipse.wst.common.project.facet.core.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..bc0009a[m
+[1m--- /dev/null[m
+[1m+++ b/.settings/org.eclipse.wst.common.project.facet.core.xml[m
+[36m@@ -0,0 +1,4 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<faceted-project>[m
+[32m+[m[32m  <installed facet="java" version="1.7"/>[m
+[32m+[m[32m</faceted-project>[m
+[1mdiff --git a/README.md b/README.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/src/com/gaboverriding/iaopm/IAOPMServlet.java b/src/com/gaboverriding/iaopm/IAOPMServlet.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ca26c9b[m
+[1m--- /dev/null[m
+[1m+++ b/src/com/gaboverriding/iaopm/IAOPMServlet.java[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m[32mpackage com.gaboverriding.iaopm;[m
+[32m+[m
+[32m+[m[32mimport java.io.IOException;[m
+[32m+[m[32mimport javax.servlet.http.*;[m
+[32m+[m
+[32m+[m[32m@SuppressWarnings("serial")[m
+[32m+[m[32mpublic class IAOPMServlet extends HttpServlet {[m
+[32m+[m	[32mpublic void doGet(HttpServletRequest req, HttpServletResponse resp)[m
+[32m+[m			[32mthrows IOException {[m
+[32m+[m		[32mresp.setContentType("text/plain");[m
+[32m+[m		[32mresp.getWriter().println("Servlet de prueba ...");[m
+[32m+[m	[32m}[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/com/gaboverriding/iaopm/config/ConfigStartup.java b/src/com/gaboverriding/iaopm/config/ConfigStartup.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c31e1bd[m
+[1m--- /dev/null[m
+[1m+++ b/src/com/gaboverriding/iaopm/config/ConfigStartup.java[m
+[36m@@ -0,0 +1,20 @@[m
+[32m+[m[32mpackage com.gaboverriding.iaopm.config;[m
+[32m+[m
+[32m+[m[32mimport javax.servlet.ServletContextEvent;[m
+[32m+[m[32mimport javax.servlet.ServletContextListener;[m
+[32m+[m
+[32m+[m[32mimport com.gaboverriding.iaopm.model.Articulo;[m
+[32m+[m
+[32m+[m[32mimport com.googlecode.objectify.ObjectifyService;[m
+[32m+[m
+[32m+[m[32mpublic class ConfigStartup implements ServletContextListener {[m
+[32m+[m
+[32m+[m	[32m@Override[m
+[32m+[m	[32mpublic void contextInitialized(ServletContextEvent arg0) {[m
+[32m+[m		[32mObjectifyService.register(Articulo.class);[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32m@Override[m
+[32m+[m	[32mpublic void contextDestroyed(ServletContextEvent arg0) {}[m
+[32m+[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/com/gaboverriding/iaopm/config/SessionSerializationPhaseListener.java b/src/com/gaboverriding/iaopm/config/SessionSerializationPhaseListener.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3f04612[m
+[1m--- /dev/null[m
+[1m+++ b/src/com/gaboverriding/iaopm/config/SessionSerializationPhaseListener.java[m
+[36m@@ -0,0 +1,42 @@[m
+[32m+[m[32mpackage com.gaboverriding.iaopm.config;[m
+[32m+[m
+[32m+[m
+[32m+[m[32mimport java.util.Map;[m
+[32m+[m
+[32m+[m[32mimport javax.faces.context.FacesContext;[m
+[32m+[m[32mimport javax.faces.event.PhaseEvent;[m
+[32m+[m[32mimport javax.faces.event.PhaseId;[m
+[32m+[m[32mimport javax.faces.event.PhaseListener;[m
+[32m+[m
+[32m+[m[32mimport org.apache.log4j.Logger;[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32mpublic class SessionSerializationPhaseListener implements PhaseListener {[m
+[32m+[m[41m [m
+[32m+[m	[32mprivate static Logger log = Logger.getLogger(SessionSerializationPhaseListener.class);[m
+[32m+[m
+[32m+[m	[32mpublic SessionSerializationPhaseListener() { }[m
+[32m+[m
+[32m+[m[32m    private void serialSession() {[m
+[32m+[m[32m        log.debug("Serializando una session web.");[m
+[32m+[m[32m        final FacesContext facesContext = FacesContext.getCurrentInstance();[m
+[32m+[m[32m        final Map sessionMap = facesContext.getExternalContext().getSessionMap();[m
+[32m+[m[32m        sessionMap.put("forceGaeSessionSerialization", System.currentTimeMillis());[m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m[32m    public void afterPhase(final PhaseEvent event) {[m
+[32m+[m[41m    [m	[32mif (event.getPhaseId().equals(PhaseId.RENDER_RESPONSE)[m[41m [m
+[32m+[m[41m    [m			[32m|| event.getPhaseId().equals(PhaseId.INVOKE_APPLICATION)[m
+[32m+[m[41m    [m			[32m|| (event.getPhaseId().equals(PhaseId.APPLY_REQUEST_VALUES)[m[41m [m
+[32m+[m[41m    [m					[32m&& event.getFacesContext().getResponseComplete()))[m
+[32m+[m[41m    [m		[32mserialSession();[m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m[32m    public PhaseId getPhaseId() {[m
+[32m+[m[32m        return PhaseId.ANY_PHASE;[m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m[32m    public void beforePhase(PhaseEvent event) { }[m
+[32m+[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/com/gaboverriding/iaopm/dao/ArticuloDAO.java b/src/com/gaboverriding/iaopm/dao/ArticuloDAO.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..14f7600[m
+[1m--- /dev/null[m
+[1m+++ b/src/com/gaboverriding/iaopm/dao/ArticuloDAO.java[m
+[36m@@ -0,0 +1,20 @@[m
+[32m+[m[32mpackage com.gaboverriding.iaopm.dao;[m
+[32m+[m
+[32m+[m[32mimport java.util.List;[m
+[32m+[m[32mimport com.gaboverriding.iaopm.model.Articulo;[m
+[32m+[m
+[32m+[m[32mpublic interface ArticuloDAO {[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m	[32mLong save(Articulo articulo);[m
+[32m+[m
+[32m+[m	[32mList<Articulo> getAll();[m
+[32m+[m
+[32m+[m	[32mBoolean remove(Articulo articulo);[m
+[32m+[m
+[32m+[m
+[32m+[m	[32mArticulo findById(Long id);[m
+[32m+[m
+[32m+[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/com/gaboverriding/iaopm/dao/ArticuloDAOObjectify.java b/src/com/gaboverriding/iaopm/dao/ArticuloDAOObjectify.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..966a746[m
+[1m--- /dev/null[m
+[1m+++ b/src/com/gaboverriding/iaopm/dao/ArticuloDAOObjectify.java[m
+[36m@@ -0,0 +1,42 @@[m
+[32m+[m[32mpackage com.gaboverriding.iaopm.dao;[m
+[32m+[m
+[32m+[m[32mimport static com.googlecode.objectify.ObjectifyService.ofy;[m
+[32m+[m
+[32m+[m[32mimport java.io.Serializable;[m
+[32m+[m[32mimport java.util.List;[m
+[32m+[m
+[32m+[m[32mimport com.gaboverriding.iaopm.model.Articulo;[m
+[32m+[m
+[32m+[m[32mimport com.googlecode.objectify.Key;[m
+[32m+[m
+[32m+[m[32mpublic class ArticuloDAOObjectify implements Serializable, ArticuloDAO {[m
+[32m+[m
+[32m+[m	[32m/**[m
+[32m+[m	[32m *[m[41m [m
+[32m+[m	[32m */[m
+[32m+[m	[32mprivate static final long serialVersionUID = 8337700736834254734L;[m
+[32m+[m
+[32m+[m	[32m@Override[m
+[32m+[m	[32mpublic Long save(Articulo articulo) {[

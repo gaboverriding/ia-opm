@@ -1,0 +1,1 @@
+Este proyecto tiene como objetivo aprender como están todos los componentes interconectados en una solución WEB y utilizar la infraestructura que proporciona Google a partir del proyecto y tutorial compartido por http://joedayz.org

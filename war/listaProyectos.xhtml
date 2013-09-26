@@ -9,7 +9,7 @@
 	</ui:define>
 
 	<f:metadata>
-		<f:event type="preRenderView" listener="#{articuloMB.reset}" />
+		<f:event type="preRenderView" listener="#{proyectoMB.reset}" />
 	</f:metadata>
 
 
@@ -21,54 +21,50 @@
 				<small> <h:outputText value="#{msg['label.listagem']}" /></small>
 			</h3>
 		</div>
-
+	
 		<h:form>
-			<h:dataTable value="#{articuloMB.dataArticulos}" var="articulo"
+			<h:dataTable value="#{proyectoMB.dataPruebas}" var="proyecto"		
 				styleClass="table table-hover">
-
 
 				<h:column>
 					<f:facet name="header">#</f:facet>
-					<h:outputText value="#{articulo.id}" />
+					<h:outputText value="#{proyecto.id}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['label.proyecto.columna1']}" />
-					</f:facet>
-					<h:link outcome="editarArticulo" value="#{articulo.nombre}"
-						title="#{msg['label.editar']} #{articulo.nombre}">
-						<f:param name="id" value="#{articulo.id}" />
-					</h:link>
+					<f:facet name="header">Nombre</f:facet>
+					<h:outputText value="#{proyecto.nombre}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['label.articulo.pais']}" />
-					</f:facet>
-					<h:outputText value="#{articulo.descripcion}" />
+					<f:facet name="header">País</f:facet>
+					<h:outputText value="#{proyecto.pais.nombre}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Avance</f:facet>
+					<h:outputText value="#{proyecto.avance}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['label.articulo.avance']}" />
-					</f:facet>
-					<h:outputText value="#{articulo.cantidad}" />
-				</h:column>
+					<f:facet name="header">Replanificaciones</f:facet>
+					<h:outputText value="#{proyecto.replanificaciones}" />
+				</h:column>								
 
 				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['label.articulo.estatus']}" />
-					</f:facet>
-					<h:outputText value="#{articulo.precio}">
-						<f:convertNumber type="currency" />
-					</h:outputText>
-				</h:column>
+					<f:facet name="header">Estado</f:facet>
+					<h:outputText value="#{proyecto.estado}" />
+				</h:column>								
+
+				<h:column>
+					<f:facet name="header">Fecha de Implantación</f:facet>
+					<h:outputText value="#{proyecto.dia_d}" />
+				</h:column>								
 
 			</h:dataTable>
 
 			<h:panelGrid columns="1">
-				<h:commandButton action="#{articuloMB.actualizar}"
+				<h:commandButton action="#{proyectoMB.actualizar}"
 					value="#{msg['button.actualizar']}" styleClass="btn btn-success" />
 			</h:panelGrid>
 
