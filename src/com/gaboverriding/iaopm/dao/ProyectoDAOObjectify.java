@@ -17,7 +17,7 @@ public class ProyectoDAOObjectify implements Serializable, ProyectoDAO{
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public Long save(Proyecto proyecto) {
+	public String save(Proyecto proyecto) {
 		ofy().save().entity(proyecto).now();
 		return proyecto.getId();
 	}

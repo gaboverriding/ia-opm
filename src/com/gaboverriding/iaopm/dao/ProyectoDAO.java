@@ -7,7 +7,7 @@ import com.gaboverriding.iaopm.model.Proyecto;
 public interface ProyectoDAO {
 
 	
-	Long save(Proyecto proyecto);
+	String save(Proyecto proyecto);
 
 	List<Proyecto> getAll();
 

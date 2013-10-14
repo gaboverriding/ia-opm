@@ -9,7 +9,7 @@
 	</ui:define>
 
 	<f:metadata>
-		<f:event type="preRenderView" listener="#{proyectoMB.reset}" />
+		<f:event type="preRenderView" listener="#{proyectoMB.reset}" />		
 	</f:metadata>
 
 
@@ -23,49 +23,59 @@
 		</div>
 	
 		<h:form>
-			<h:dataTable value="#{proyectoMB.dataPruebas}" var="proyecto"		
+			<h:dataTable value="#{proyectoMB.dataPruebas}" var="proy"		
 				styleClass="table table-hover">
 
 				<h:column>
-					<f:facet name="header">#</f:facet>
-					<h:outputText value="#{proyecto.id}" />
+					<f:facet name="header">
+						<h:outputText value="#{msg['label.proyecto.id']}" />
+					</f:facet>
+					<h:link outcome="editarProyecto" value="#{proy.id}"
+						title="#{msg['label.editar']} #{proy.nombre}">	
+						<f:param name="id" value="#{proy.id}" />
+						<f:param name="nombre" value="#{proy.nombre}" />
+						<f:param name="pais" value="#{proy.pais.nombre}" />
+						<f:param name="avance" value="#{proy.avance}" />
+						<f:param name="semaforo" value="#{proy.estado}" />
+																		
+					</h:link>
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Nombre</f:facet>
-					<h:outputText value="#{proyecto.nombre}" />
+					<h:outputText value="#{proy.nombre}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">País</f:facet>
-					<h:outputText value="#{proyecto.pais.nombre}" />
+					<h:outputText value="#{proy.pais.nombre}" />
 				</h:column>
 				
 				<h:column>
 					<f:facet name="header">Avance</f:facet>
-					<h:outputText value="#{proyecto.avance}" />
+					<h:outputText value="#{proy.avance}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Replanificaciones</f:facet>
-					<h:outputText value="#{proyecto.replanificaciones}" />
+					<h:outputText value="#{proy.replanificaciones}" />
 				</h:column>								
 
 				<h:column>
 					<f:facet name="header">Estado</f:facet>
-					<h:outputText value="#{proyecto.estado}" />
+					<h:outputText value="#{proy.estado}" />
 				</h:column>								
 
 				<h:column>
 					<f:facet name="header">Fecha de Implantación</f:facet>
-					<h:outputText value="#{proyecto.dia_d}" />
+					<h:outputText value="#{proy.dia_d}" />
 				</h:column>								
 
 			</h:dataTable>
 
 			<h:panelGrid columns="1">
 				<h:commandButton action="#{proyectoMB.actualizar}"
-					value="#{msg['button.actualizar']}" styleClass="btn btn-success" />
+					value="#{proyectoMB.proyecto.nombre}" styleClass="btn btn-success" />
 			</h:panelGrid>
 
 		</h:form>

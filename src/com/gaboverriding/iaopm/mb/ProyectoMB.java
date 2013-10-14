@@ -6,10 +6,12 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -39,18 +41,39 @@ public class ProyectoMB implements Serializable {
 
 	private Proyecto proyecto;
 
-	private Long idSelecionado;
+	private String idSelecionado;
+	
+	private String varPruebas;
 
-
-	private Map<Long, Proyecto> proyectos;
-
-	public ProyectoMB() {
-		dao = new ProyectoDAOObjectify();
-		fillProyectos();
+	public String getVarPruebas() {
+		log.debug("Getting varPruebas:" + this.varPruebas + ":");
+		return varPruebas;
 	}
 
 
+	public void setVarPruebas(String varPruebas) {
+		log.debug("Setting varPruebas:" + varPruebas + ":");		
+		this.varPruebas = varPruebas;
+	}
 
+
+	private Map<String, Proyecto> proyectos;
+
+	//public void obtenNombre
+	
+
+	
+	public ProyectoMB() {
+		dao = new ProyectoDAOObjectify();
+		this.proyecto = new Proyecto();
+		this.idSelecionado = "1234567890";
+		fillProyectos();
+		log.debug("Constructor de ProyectoMB - this.proyecto.nombre:" + this.proyecto.getNombre());
+		log.debug("Constructor de ProyectoMB - this.getIdSelecionado():" + this.getIdSelecionado());
+
+	}
+
+	
 	public void actualizar() {
 		fillProyectos();
 	}	
@@ -58,12 +81,12 @@ public class ProyectoMB implements Serializable {
 	private void fillProyectos() {
 		try {
 			List<Proyecto> qryProyectos = new ArrayList<Proyecto>(dao.getAll());		
-			proyectos = new HashMap<Long, Proyecto>();		
+			proyectos = new HashMap<String, Proyecto>();		
 			for (Proyecto a: qryProyectos) {
 				proyectos.put(a.getId(), a);
 			}
 
-			log.debug("Tamaño de la Lista de Proyectos ("+proyectos.size()+")");
+			log.debug("Tamaño de la Lista de Proyectos:"+proyectos.size()+":");
 		} catch(Exception ex) {
 			log.error("Error al cargar la lista de proyectos.", ex);
 			addMessage(getMessageFromI18N("msg.erro.listar.proyecto"), ex.getMessage());
@@ -87,26 +110,29 @@ public class ProyectoMB implements Serializable {
 	}
 
 	public Proyecto getProyecto() {
-		return proyecto;
+		log.debug("Obteniendo referencia al objeto proyecto:" + this.proyecto + ":");
+		return this.proyecto;
 	}
 
 	public void setProyecto(Proyecto proyecto) {
 		this.proyecto = proyecto;
 	}
 
-	public Long getIdSelecionado() {
+	public String getIdSelecionado() {
+		log.debug("El id seleccionado es:" + idSelecionado + ":");		
 		return idSelecionado;
 	}
 
-	public void setIdSelecionado(Long idSelecionado) {
+	public void setIdSelecionado(String idSelecionado) {
+		log.debug("Setting idSeleccionado ... :" + this.idSelecionado + ":");
 		this.idSelecionado = idSelecionado;
 	}
 
-	public Map<Long, Proyecto> getProyectos() {
+	public Map<String, Proyecto> getProyectos() {
 		return proyectos;
 	}
 
-	public void setProyectos(Map<Long, Proyecto> proyectos) {
+	public void setProyectos(Map<String, Proyecto> proyectos) {
 		this.proyectos = proyectos;
 	}
 
@@ -115,18 +141,38 @@ public class ProyectoMB implements Serializable {
 	
 	}
 	
-	public Proyecto[] getDataPruebas(){
+	public DataModel<Proyecto> getDataPruebas(){
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try {
+			/*
+		log.debug("printing ... debug ...");	
+		log.info("printing ... info ...");
+		log.warn("printing ... warn ...");
+		log.error("printing ... error ...");
+		log.fatal("printing ... fatal ...");
+		*/
 		Date d1 = sdf.parse("21/12/2012");
 		Date d2 = sdf.parse("21/12/2012");
 		Date d3 = sdf.parse("29/04/1975");
 		
 		Proyecto dataProyectos[] = new	Proyecto[] {
-				new Proyecto(1l,"PISCO", "PISCO Co", new Pais("Colombia"),(short)57,2,ProyectoEstado.AMARILLO, d1, d2, d3),
-				new Proyecto(1l,"PISCO", "PISCO Co", new Pais("México"),(short)57,2,ProyectoEstado.ROJO, d1, d2, d3)
+				new Proyecto("PROYCO0319101611","PISCO", "PISCO Co", new Pais("Colombia"),(short)57,2,ProyectoEstado.AMARILLO, d1, d2, d3),
+				new Proyecto("PROYMX1030160310","PISCO", "PISCO Mx", new Pais("México"),(short)57,0,ProyectoEstado.ROJO, d1, d2, d3)
 			};
-		return dataProyectos;
+		log.debug("El numero de proyectos de prueba son:" + dataProyectos.length + ":");
+		
+		this.proyectos.put(dataProyectos[0].getId(), dataProyectos[0]);
+		this.proyectos.put(dataProyectos[1].getId(), dataProyectos[1]);
+		
+		Set<Proyecto> setProyectos = new HashSet<Proyecto>();
+		
+		setProyectos.add(dataProyectos[0]);
+		setProyectos.add(dataProyectos[1]);
+		log.debug("El numero de proyectos en el Set son:" + setProyectos.size() + ":");
+		
+		DataModel<Proyecto> listaDataModel = new ListDataModel<Proyecto>(new ArrayList<Proyecto>(setProyectos));
+				
+		return listaDataModel;
 		
 		}catch(Exception e){
 			e.printStackTrace();
@@ -141,8 +187,9 @@ public class ProyectoMB implements Serializable {
 	
 
 	public void reset() {
-		proyecto = null;
-		idSelecionado = null;
+		//proyecto = null;
+		//idSelecionado = null;
+		log.debug("RESETEANDO LOS VALORES DE proyecto y idSeleccionado");
 	}
 
 	public void agregar(){
@@ -152,10 +199,11 @@ public class ProyectoMB implements Serializable {
 
 	public void editar() {
 		if (idSelecionado == null) {
+			log.debug("el id seleccionado resulto ser NULL");
 			return;
 		}
 		proyecto = proyectos.get(idSelecionado);
-		log.debug("Vamos a editar proyecto");
+		log.debug("Vamos a editar proyecto cuyo id es:" + idSelecionado + ":");
 	}	
 
 
@@ -172,7 +220,24 @@ public class ProyectoMB implements Serializable {
 		return "listaProyectos";
 	}
 
+	public String guardarPruebasLocales() {
+		try {
+			//dao.save(proyecto); // SE COMENTA PORQUE NO SE ESTA TRABAJANDO CON LA BD DE GAE
+			log.debug("El Proyecto que se pretende guardar es:" + proyecto.getId() + ":" + proyecto.getNombre() + ":");
+			proyectos.put(proyecto.getId(), proyecto);
+			log.debug("Ahora el contenido de la hashmap es:" + proyectos + ":");
+		} catch(Exception ex) {
+			log.error("Error al guardar proyecto.", ex);
+			addMessage(getMessageFromI18N("msg.error.guardar.proyecto"), ex.getMessage());
+			return "";
+		}
+		log.debug("Proyecto guardado con id  "+proyecto.getId());
+		return "listaProyectos";
+	}
 
+	
+	
+	
 	public String eliminar() {
 		try {
 			dao.remove(proyecto);

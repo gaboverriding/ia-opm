@@ -7,6 +7,8 @@ import com.googlecode.objectify.annotation.Id;
 
 import java.io.Serializable;
 
+import org.mortbay.log.Log;
+
 @Entity
 public class Proyecto implements Serializable{
 
@@ -15,7 +17,7 @@ public class Proyecto implements Serializable{
 	 */
 	private static final long serialVersionUID = 4957310538924882064L;
 	@Id
-	private Long id;
+	private String id;
 	private String nombre;
 	private String descripcion;
 	private Pais pais;
@@ -29,7 +31,7 @@ public class Proyecto implements Serializable{
 	Date d = sdf.parse("21/12/2012");*/
 	
 	
-	public Proyecto (long id, String nombre, String descripcion, Pais pais, short avance, int replanificaciones, ProyectoEstado estado, Date d_ini, Date d_fin, Date d_d) {
+	public Proyecto (String id, String nombre, String descripcion, Pais pais, short avance, int replanificaciones, ProyectoEstado estado, Date d_ini, Date d_fin, Date d_d) {
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -43,17 +45,19 @@ public class Proyecto implements Serializable{
 	}	
 	
 	public Proyecto () {
+		this("666666","Nombre default","Descripcion default",new Pais("Mexico"),(short)0,0,ProyectoEstado.VERDE,new Date(),new Date(),new Date());
 	}	
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
 	public String getNombre() {
+		System.out.println("Obteniendo el nombre:" + nombre + ":");
 		return nombre;
 	}
 

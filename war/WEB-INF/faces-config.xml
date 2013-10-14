@@ -4,9 +4,9 @@
 	version="2.1">
 
 	<application>
-		<!-- Configura una localidad (i18n) es-PE para toda la aplicación. -->
+		<!-- Configura una localidad (i18n) es-MX para toda la aplicación. -->
 		<locale-config>
-			<default-locale>es_PE</default-locale>
+			<default-locale>es_MX</default-locale>
 		</locale-config>
 
 		<!-- Define el nombre del archivo con las labels y mensajes.
@@ -25,8 +25,8 @@
 	<!-- Define una navegación global para una pagina con una lista de mercadorias. -->
 	<navigation-rule>
 		<navigation-case>
-			<from-outcome>listaArticulos</from-outcome>
-			<to-view-id>/listaArticulos.xhtml</to-view-id>
+			<from-outcome>listaProyectos</from-outcome>
+			<to-view-id>/listaproyectos.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

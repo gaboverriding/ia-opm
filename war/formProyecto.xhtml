@@ -8,37 +8,46 @@
     		<legend><h3><h:outputText value="#{msg['label.proyecto']}" /> <small> <h:outputText value="#{subtitle}" /></small></h3></legend>
     		
     		<div class="control-group">
-	    		<label class="control-label"><h:outputText value="#{msg['label.proyecto.columna1']}" /></label>
+	    		<label class="control-label"><h:outputText value="#{msg['label.proyecto.id']}" /></label>
 	    		<div class="controls">
-	    			<h:inputText value="#{articuloMB.articulo.nombre}" label="#{msg['label.articulo.nombre']}" required="true" styleClass="input-large">
+	    			<h:inputText value="#{param.id}" label="#{msg['label.proyecto.id']}" required="true" styleClass="input-large">
+	    				<f:validateLength minimum="5" maximum="60" />
+	    			</h:inputText>
+	    		</div>
+    		</div>
+
+
+    		<div class="control-group">
+	    		<label class="control-label"><h:outputText value="#{msg['label.proyecto.nombre']}" /></label>
+	    		<div class="controls">
+	    			<h:inputText value="#{param.nombre}" label="#{msg['label.proyecto.nombre']}" required="true" styleClass="input-large">
 	    				<f:validateLength minimum="5" maximum="60" />
 	    			</h:inputText>
 	    		</div>
     		</div>
     		
     		<div class="control-group">
-	    		<label class="control-label"><h:outputText value="#{msg['label.proyecto.columna2']}" /></label>
+	    		<label class="control-label"><h:outputText value="#{msg['label.proyecto.pais']}" /></label>
 	    		<div class="controls">
-	    			<h:inputText value="#{articuloMB.articulo.descripcion}" label="#{msg['label.articulo.descripcion']}" required="true" styleClass="input-large">
-	    				<f:validateLength minimum="5" maximum="100" />
+	    			<h:inputText value="#{param.pais}" label="#{msg['label.proyecto.pais']}" required="true" styleClass="input-large">
+	    				<f:validateLength minimum="5" maximum="15" />
 	    			</h:inputText>
 	    		</div>
 	    	</div>
 
 	    	<div class="control-group">
-	    		<label class="control-label"><h:outputText value="#{msg['label.proyecto.columna3']}" /></label>
+	    		<label class="control-label"><h:outputText value="#{msg['label.proyecto.avance']}" /></label>
 	    		<div class="controls">
-	    			<h:inputText value="#{articuloMB.articulo.cantidad}" label="#{msg['label.articulo.cantidad']}" required="true" styleClass="input-small">
-	    				<f:convertNumber />
-	    				<f:validateLongRange minimum="1" />
-	    			</h:inputText>
-	    		</div>
+	    			<h:inputText value="#{param.avance}" label="#{msg['label.proyecto.avance']}" required="true" styleClass="input-small">
+	    				<f:validateLongRange minimum="0" maximum="100" />	    			
+	    			</h:inputText>	    			
+	    		</div>	    		
 	    	</div>
 
 	    	<div class="control-group">
-	    		<label class="control-label"><h:outputText value="#{msg['label.proyecto.columna4']}" /></label>
+	    		<label class="control-label"><h:outputText value="#{msg['label.proyecto.estatus']}" /></label>
 	    		<div class="controls">
-	    			<h:inputText value="#{articuloMB.articulo.precio}" label="#{msg['label.articulo.precio']}" required="true" styleClass="input-small">
+	    			<h:inputText value="#{param.semaforo}" label="#{msg['label.proyecto.estatus']}" required="true" styleClass="input-small">
 	    				<f:convertNumber minFractionDigits="2" />
 	    				<f:validateDoubleRange minimum="1" />
 	    			</h:inputText>
@@ -48,11 +57,12 @@
     	
     	<div class="control-group">
     		<div class="controls">
-    			<h:commandButton value="#{msg['button.guardar']}" action="#{articuloMB.guardar}" styleClass="btn btn-success"/>
-    			<h:button value="#{msg['button.cancelar']}" outcome="listaArticulos" styleClass="btn"/>
-    			<h:commandButton value="#{msg['button.eliminar']}" action="#{articuloMB.eliminar}" rendered="#{articuloMB.articulo.id != null}" immediate="true" styleClass="btn btn-danger"/>
+    			<h:commandButton value="#{msg['button.guardar']}" action="#{proyectoMB.guardarPruebasLocales}" styleClass="btn btn-success"/>
+    			<h:button value="#{msg['button.cancelar']}" outcome="listaProyectos" styleClass="btn"/>
+    			<h:commandButton value="#{msg['button.eliminar']}" action="#{proyectoMB.eliminar}" rendered="#{proyectoMB.proyecto.id != null}" immediate="true" styleClass="btn btn-danger"/>
     		</div>
     	</div>
+    	
     </h:form>
     
     <h:panelGroup layout="block" class="alert alert-error" rendered="#{facesContext.validationFailed or not empty facesContext.messageList }">
